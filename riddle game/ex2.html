@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>Count</title>
+        <link href="ex2.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="div1">   
+        <div id="hidediv11" class="div11">    
+            <input class="inp" id="tag" type="text">
+            <button id="name" class="nametag" type="button" onclick="select(); hide()">Select Nametag</button>
+        </div>  
+            <p class="nametagg" id="nametagg"></p>
+
+<script>
+    
+    function select() {
+        let inputValue = document.getElementById("tag").value;
+        let display = document.getElementById("nametagg");
+            display.innerHTML = "your nametage is : "+inputValue;
+        }
+
+    function hide() {
+        document.getElementById("hidediv11").style.display = "none";
+    }
+</script>
+    </div>
+            <p class="exp">This is a guessing game where the user has to find a randomly generated number between 1 and 100, with a limited number of attempts and a feedback that helps to know if the guess is higher or lower than the number to find, and a reset button to play again once the game is finished</p>
+    <div class="div2">
+            <button class="launchbtn" id="launch"  type="button" onclick="launch(); hideButton()">Launch Game</button>
+        <div class="div3" id="game">
+            <input id="inputt" type="value">
+            <button id="Number" class="buttt" type="button" onclick="search()">Fint it</button>
+            <p class="textt" id="text">  </p>
+            <p id="attempts"></p>
+            <button id="reset-button" onclick="resetGame()">Reset</button>
+
+            <script>
+                     let randomNumber;
+                     let game = document.getElementById("game");
+                        game.style.display = "none"
+               function launch() {
+               
+                    randomNumber = Math.floor(Math.random() * 100) + 1;
+                    console.log(randomNumber);
+                    game.style.display = "block"
+                    
+               }
+               function hideButton() {
+                    document.getElementById("launch").style.display = "none";
+               }
+              
+
+               let attempts = 0;
+               let maxAttempts = 10;
+               function search() {
+                if (attempts < maxAttempts) {
+                        attempts++;
+                    
+                     let text = document.getElementById("text");
+                     let inputNumber = parseInt(document.getElementById("inputt").value);
+                     
+                     document.getElementById("attempts").innerHTML ="You have maked " + attempts + " attempts";
+
+                 
+                 if (randomNumber > inputNumber) {
+                    text.innerHTML = "hihgher one"
+                 }
+                 if (randomNumber < inputNumber) {
+                    text.innerHTML = "lower one"
+                 }
+                 if (randomNumber === inputNumber) {
+                     text.innerHTML = "congratulation, you find the number in " + attempts +" attempts";
+                 }
+                } else {
+                    document.getElementById("text").innerHTML =  "You have reached the maximum number of attempts.";
+                 }
+               }
+
+               function resetGame() {
+                attempts = 0;
+                document.getElementById("inputt").value = "";
+                document.getElementById("text").innerHTML = "";
+                document.getElementById("attempts").innerHTML = "";
+                document.getElementById("launch").style.display = "block";
+                game.style.display = "none"
+               }
+
+            </script>
+            </div>
+    </div>
+</body>
